@@ -7,4 +7,8 @@ export default defineConfig({
   preview: {
     port: 8080,
   },
+  build: {
+    manifest: true,
+    outDir: "dist",
+  },
 });
