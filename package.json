@@ -1,5 +1,5 @@
 {
-  "name": "front-end",
+  "name": "app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.16.1",
     "@trpc/client": "^10.2.0",
+    "@trpc/next": "^10.2.0",
+    "@trpc/react-query": "^10.2.0",
     "@trpc/server": "^10.2.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
