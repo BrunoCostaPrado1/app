@@ -1,9 +1,9 @@
-import Image from 'next/image'
-import { FeedbackType, feedbackTypes } from '..'
-import { CloseButton } from '../../CloseButton'
+import Image from "next/image";
+import { FeedbackType, feedbackTypes } from "..";
+import { CloseButton } from "../../CloseButton";
 
 interface FeedbackTypeStepProps {
-  onFeedbackTypeChanged: (type: FeedbackType) => void
+  onFeedbackTypeChanged: (type: FeedbackType) => void;
 }
 
 export function FeedbackTypeStep({
@@ -32,9 +32,9 @@ export function FeedbackTypeStep({
               />
               <span>{value.title}</span>
             </button>
-          )
+          );
         })}
       </div>
     </>
-  )
+  );
 }

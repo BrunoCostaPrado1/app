@@ -1,7 +1,7 @@
-import { CloseButton } from '../../CloseButton'
+import { CloseButton } from "../../CloseButton";
 
 interface FeedbackSuccessStepProps {
-  onFeedbackRestartRequested: () => void
+  onFeedbackRestartRequested: () => void;
 }
 
 export function FeedbackSuccessStep({
@@ -43,5 +43,5 @@ export function FeedbackSuccessStep({
         </button>
       </div>
     </>
-  )
+  );
 }
