@@ -1,22 +1,22 @@
-import Image from 'next/image'
-import { ArrowLeft } from 'phosphor-react'
-import { FormEvent, KeyboardEvent, useRef, useState } from 'react'
-import { FeedbackType, feedbackTypes } from '..'
-import { CloseButton } from '../../CloseButton'
-import { Loading } from '../../Loading'
-import * as z from 'zod'
+import Image from "next/image";
+import { ArrowLeft } from "phosphor-react";
+import { FormEvent, KeyboardEvent, useRef, useState } from "react";
+import { FeedbackType, feedbackTypes } from "..";
+import { CloseButton } from "../../CloseButton";
+import { Loading } from "../../Loading";
+import * as z from "zod";
 
 const feedbackFormSchema = z.object({
-  type: z.enum(['BUG', 'IDEA', 'OTHER']),
+  type: z.enum(["BUG", "IDEA", "OTHER"]),
   comment: z.string(),
-})
+});
 
-export type FeedbackFormSchema = z.infer<typeof feedbackFormSchema>
+export type FeedbackFormSchema = z.infer<typeof feedbackFormSchema>;
 
 export interface FeedbackContentStepProps {
-  feedbackType: FeedbackType
-  onFeedbackRestartRequested: () => void
-  onFeedbackSubmitted: (data: FeedbackFormSchema) => void | Promise<void>
+  feedbackType: FeedbackType;
+  onFeedbackRestartRequested: () => void;
+  onFeedbackSubmitted: (data: FeedbackFormSchema) => void | Promise<void>;
 }
 
 export function FeedbackContentStep({
@@ -24,31 +24,31 @@ export function FeedbackContentStep({
   onFeedbackRestartRequested,
   onFeedbackSubmitted,
 }: FeedbackContentStepProps) {
-  const formRef = useRef<HTMLFormElement>(null)
-  const [comment, setComment] = useState('')
-  const [isSendingFeedback, setIsSendingFeedback] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null);
+  const [comment, setComment] = useState("");
+  const [isSendingFeedback, setIsSendingFeedback] = useState(false);
 
-  const feedbackTypeInfo = feedbackTypes[feedbackType]
+  const feedbackTypeInfo = feedbackTypes[feedbackType];
 
   function handleSubmitFromTextarea(e: KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
-      formRef.current?.requestSubmit()
+    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+      formRef.current?.requestSubmit();
     }
   }
 
   async function handleSubmitFeedback(event: FormEvent) {
-    event.preventDefault()
+    event.preventDefault();
 
-    setIsSendingFeedback(true)
+    setIsSendingFeedback(true);
 
     const data = feedbackFormSchema.parse({
       type: feedbackType,
       comment,
-    })
+    });
 
-    await onFeedbackSubmitted(data)
+    await onFeedbackSubmitted(data);
 
-    setIsSendingFeedback(false)
+    setIsSendingFeedback(false);
   }
 
   return (
@@ -97,10 +97,10 @@ export function FeedbackContentStep({
             disabled={comment.length === 0 || isSendingFeedback}
             className="p-2 bg-brand-500 rounded border-transparent flex-1 flex justify-center items-center text-sm hover:bg-brand-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-brand-500 transition-colors disabled:opacity-50 disabled:hover:bg-brand-500"
           >
-            {isSendingFeedback ? <Loading /> : 'Enviar feedback'}
+            {isSendingFeedback ? <Loading /> : "Enviar feedback"}
           </button>
         </footer>
       </form>
     </>
-  )
+  );
 }
